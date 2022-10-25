@@ -53,7 +53,7 @@ class ZodiacDetailPage extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
                         child: SizedBox(
-                          width: 280.0,
+                          // width: 280.0,
                           height: 280.0,
                           child: FadeInImage(
                             fit: BoxFit.cover,
@@ -102,7 +102,10 @@ class ZodiacDetailPage extends StatelessWidget {
 
                   return SizedBox(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0,
+                        vertical: 40.0,
+                      ),
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
@@ -227,8 +230,8 @@ class ZodiacDetailPage extends StatelessWidget {
                   );
                 },
                 itemCount: zodiac.value.length,
-                itemWidth: 300.0,
-                itemHeight: 400.0,
+                itemWidth: 100.0,
+                itemHeight: 100.0,
                 layout: SwiperLayout.DEFAULT,
                 scrollDirection: Axis.vertical,
               ),
