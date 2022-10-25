@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:animations/animations.dart';
 
+import 'zodiac_detail_page.dart';
 import '../../core/constants/constants.dart';
 
 class ZodiacPage extends StatelessWidget {
@@ -29,13 +31,28 @@ class ZodiacPage extends StatelessWidget {
           children: zodiacSignString.asMap().entries.map((zodiac) {
             String zodiacIcon = zodiacIconList[zodiac.key];
 
-            return Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/$zodiacIcon"),
+            return OpenContainer(
+                closedBuilder: (_, closeContainer) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/$zodiacIcon"),
+                      ),
+                    ),
+                  );
+                },
+                openColor: Colors.transparent,
+                closedElevation: 5.0,
+                closedShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.0),
                 ),
-              ),
-            );
+                openShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                closedColor: Colors.transparent,
+                openBuilder: (_, openContainer) {
+                  return const ZodiacDetailPage();
+                });
           }).toList(),
         ),
       ),
