@@ -3,24 +3,25 @@ import 'package:equatable/equatable.dart';
 
 import '../../core/error/failures.dart';
 import '../../core/usecases/usecase.dart';
+import '../repositories/zodiac_repository.dart';
 import '../../data/models/zodiac_list_model.dart';
 
-class GetAllZodiacUseCase implements UseCase<ZodiacListModel, Params> {
-  @override
-  Future<Either<Failure, ZodiacListModel>> call(params) {
-    throw UnimplementedError();
-  }
-}
+class GetAllZodiacUseCase implements UseCase<ZodiacListModel, NoParams> {
+  final ZodiacRepository zodiacRepository;
 
-class Params extends Equatable {
-  final String sign;
-  final String day;
-
-  const Params({
-    required this.sign,
-    required this.day,
+  GetAllZodiacUseCase({
+    required this.zodiacRepository,
   });
 
   @override
-  List<Object> get props => [sign, day];
+  Future<Either<Failure, ZodiacListModel>> call(params) async {
+    return await zodiacRepository.getAllZodiac();
+  }
+}
+
+class NoParams extends Equatable {
+  const NoParams();
+
+  @override
+  List<Object> get props => [];
 }

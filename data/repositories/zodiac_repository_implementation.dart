@@ -18,8 +18,7 @@ class ZodiacRepositoryImplementation implements ZodiacRepository {
   });
 
   @override
-  Future<Either<Failure, ZodiacListModel>> getAllZodiac(
-      String sign, String day) async {
+  Future<Either<Failure, ZodiacListModel>> getAllZodiac() async {
     final isConnected = await networkInfo.isConnected;
 
     if (isConnected) {

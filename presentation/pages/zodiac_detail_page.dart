@@ -1,9 +1,17 @@
-import 'package:card_swiper/card_swiper.dart';
-import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flip_card/flip_card.dart';
+import 'package:card_swiper/card_swiper.dart';
+import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
+
+import '../../data/models/zodiac_model.dart';
 
 class ZodiacDetailPage extends StatelessWidget {
-  const ZodiacDetailPage({super.key});
+  final MapEntry<String, Map<String, ZodiacModel>> zodiac;
+
+  const ZodiacDetailPage({
+    super.key,
+    required this.zodiac,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +36,16 @@ class ZodiacDetailPage extends StatelessWidget {
                 color: const Color(0xFF303952),
                 borderRadius: BorderRadius.circular(10.0),
               ),
+              child: Center(
+                child: Text(
+                  toBeginningOfSentenceCase(zodiac.key) ?? "",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 25.0,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+              ),
             ),
             back: Container(
               decoration: BoxDecoration(
@@ -36,17 +54,135 @@ class ZodiacDetailPage extends StatelessWidget {
               ),
               child: Swiper(
                 itemBuilder: (BuildContext context, int index) {
-                  return Center(
-                    child: Text(
-                      "$index",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 35.0,
+                  final currentZodiac = zodiac.value.entries.elementAt(index);
+
+                  return SizedBox(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Text(
+                              toBeginningOfSentenceCase(currentZodiac.key) ??
+                                  "",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 25.0,
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                            ListTile(
+                              title: const Text(
+                                "Compatibility",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  letterSpacing: 1.0,
+                                ),
+                              ),
+                              subtitle: Text(
+                                currentZodiac.value.compatibility,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            ListTile(
+                              title: const Text(
+                                "Lucky Time",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  letterSpacing: 1.0,
+                                ),
+                              ),
+                              subtitle: Text(
+                                currentZodiac.value.luckyTime,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            ListTile(
+                              title: const Text(
+                                "Lucky Number",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  letterSpacing: 1.0,
+                                ),
+                              ),
+                              subtitle: Text(
+                                currentZodiac.value.luckyNumber,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            ListTile(
+                              title: const Text(
+                                "Color",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  letterSpacing: 1.0,
+                                ),
+                              ),
+                              subtitle: Text(
+                                currentZodiac.value.color,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            ListTile(
+                              title: const Text(
+                                "Date Range",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  letterSpacing: 1.0,
+                                ),
+                              ),
+                              subtitle: Text(
+                                currentZodiac.value.dateRange,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            ListTile(
+                              title: const Text(
+                                "Mood",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  letterSpacing: 1.0,
+                                ),
+                              ),
+                              subtitle: Text(
+                                currentZodiac.value.mood,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            ListTile(
+                              title: const Text(
+                                "Description",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  letterSpacing: 1.0,
+                                ),
+                              ),
+                              subtitle: Text(
+                                currentZodiac.value.description,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
                 },
-                itemCount: 5,
+                itemCount: zodiac.value.length,
                 itemWidth: 300.0,
                 itemHeight: 400.0,
                 layout: SwiperLayout.DEFAULT,
