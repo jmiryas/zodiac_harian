@@ -22,6 +22,8 @@ class ZodiacBloc extends Bloc<ZodiacBlocEvent, ZodiacBlocState> {
     GetAllZodiacEvent event,
     Emitter<ZodiacBlocState> emit,
   ) async {
+    emit(ZodiacBlocLoadingState());
+
     final getAllZodiacEither = await getAllZodiacUseCase(const NoParams());
 
     await getAllZodiacEither.fold(

@@ -22,12 +22,22 @@ class ZodiacPage extends StatelessWidget {
         late Widget widget;
 
         if (state is ZodiacBlocInitialState) {
-          widget = const Center(
-            child: CircularProgressIndicator(),
+          widget = Container(
+            color: const Color.fromARGB(255, 63, 76, 110),
+            child: const Center(
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ),
+            ),
           );
         } else if (state is ZodiacBlocLoadingState) {
-          widget = const Center(
-            child: CircularProgressIndicator(),
+          widget = Container(
+            color: const Color.fromARGB(255, 63, 76, 110),
+            child: const Center(
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ),
+            ),
           );
         } else if (state is ZodiacBlocLoadedState) {
           widget = Container(
