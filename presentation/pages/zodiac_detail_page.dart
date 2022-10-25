@@ -3,18 +3,23 @@ import 'package:flip_card/flip_card.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 
+import '../../core/constants/constants.dart';
 import '../../data/models/zodiac_model.dart';
 
 class ZodiacDetailPage extends StatelessWidget {
+  final int zodiacIndex;
   final MapEntry<String, Map<String, ZodiacModel>> zodiac;
 
   const ZodiacDetailPage({
     super.key,
+    required this.zodiacIndex,
     required this.zodiac,
   });
 
   @override
   Widget build(BuildContext context) {
+    final String zodiacImage = zodiacImageList[zodiacIndex];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Zodiac Detail"),
@@ -32,17 +37,56 @@ class ZodiacDetailPage extends StatelessWidget {
                 .fillBack, // Fill the back side of the card to make in the same size as the front.
             direction: FlipDirection.HORIZONTAL, // default
             front: Container(
+              width: double.infinity,
+              height: double.infinity,
               decoration: BoxDecoration(
                 color: const Color(0xFF303952),
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              child: Center(
-                child: Text(
-                  toBeginningOfSentenceCase(zodiac.key) ?? "",
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 25.0,
-                    letterSpacing: 1.2,
+              child: SizedBox(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10.0),
+                        child: SizedBox(
+                          width: 280.0,
+                          height: 280.0,
+                          child: FadeInImage(
+                            fit: BoxFit.cover,
+                            placeholder:
+                                const AssetImage("assets/images/loading5.gif"),
+                            image: AssetImage("assets/images/$zodiacImage"),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        toBeginningOfSentenceCase(zodiac.key) ?? "",
+                        style: const TextStyle(
+                          fontSize: 35.0,
+                          letterSpacing: 1.2,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      const Text(
+                        "Tap untuk menampilkan informasi zodiac",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          letterSpacing: 1.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w200,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

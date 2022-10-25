@@ -52,10 +52,12 @@ class ZodiacPage extends StatelessWidget {
                 return OpenContainer(
                     closedBuilder: (_, closeContainer) {
                       return Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/images/$zodiacIcon"),
-                          ),
+                        color: Colors.grey.shade100,
+                        child: FadeInImage(
+                          fit: BoxFit.cover,
+                          placeholder:
+                              const AssetImage("assets/images/loading5.gif"),
+                          image: AssetImage("assets/images/$zodiacIcon"),
                         ),
                       );
                     },
@@ -70,6 +72,7 @@ class ZodiacPage extends StatelessWidget {
                     closedColor: Colors.transparent,
                     openBuilder: (_, openContainer) {
                       return ZodiacDetailPage(
+                        zodiacIndex: zodiacIndex,
                         zodiac: zodiac,
                       );
                     });

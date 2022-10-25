@@ -60,3 +60,18 @@ const zodiacIconList = [
   "11_aquarius.png",
   "12_pisces.png",
 ];
+
+const zodiacImageList = [
+  "01_aries_image.png",
+  "02_taurus_image.png",
+  "03_gemini_image.png",
+  "04_cancer_image.png",
+  "05_leo_image.png",
+  "06_virgo_image.png",
+  "07_libra_image.png",
+  "08_scorpio_image.png",
+  "09_sagittarius_image.png",
+  "10_capricorn_image.png",
+  "11_aquarius_image.png",
+  "12_pisces_image.png",
+];
