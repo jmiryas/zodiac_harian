@@ -30,82 +30,78 @@ class ZodiacDetailPage extends StatelessWidget {
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 63, 76, 110),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: FlipCard(
-            fill: Fill
-                .fillBack, // Fill the back side of the card to make in the same size as the front.
-            direction: FlipDirection.HORIZONTAL, // default
-            front: Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: BoxDecoration(
-                color: const Color(0xFF303952),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: SizedBox(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10.0),
-                        child: SizedBox(
-                          // width: 280.0,
-                          height: 280.0,
-                          child: FadeInImage(
-                            fit: BoxFit.cover,
-                            placeholder:
-                                const AssetImage("assets/images/loading5.gif"),
-                            image: AssetImage("assets/images/$zodiacImage"),
-                          ),
+        child: FlipCard(
+          fill: Fill.fillBack,
+          direction: FlipDirection.HORIZONTAL,
+          front: Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              color: const Color(0xFF303952),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: SizedBox(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: SizedBox(
+                        // width: 280.0,
+                        height: 280.0,
+                        child: FadeInImage(
+                          fit: BoxFit.cover,
+                          placeholder:
+                              const AssetImage("assets/images/loading5.gif"),
+                          image: AssetImage("assets/images/$zodiacImage"),
                         ),
                       ),
-                      const SizedBox(
-                        height: 10.0,
+                    ),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Text(
+                      toBeginningOfSentenceCase(zodiac.key) ?? "",
+                      style: const TextStyle(
+                        fontSize: 35.0,
+                        letterSpacing: 1.2,
+                        color: Colors.white,
                       ),
-                      Text(
-                        toBeginningOfSentenceCase(zodiac.key) ?? "",
-                        style: const TextStyle(
-                          fontSize: 35.0,
-                          letterSpacing: 1.2,
-                          color: Colors.white,
-                        ),
+                    ),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    const Text(
+                      "Tap untuk menampilkan informasi zodiac",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        letterSpacing: 1.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w200,
                       ),
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-                      const Text(
-                        "Tap untuk menampilkan informasi zodiac",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          letterSpacing: 1.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w200,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            back: Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFF303952),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Swiper(
-                itemBuilder: (BuildContext context, int index) {
-                  final currentZodiac = zodiac.value.entries.elementAt(index);
+          ),
+          back: Container(
+            decoration: BoxDecoration(
+              color: const Color(0xFF303952),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Swiper(
+              itemBuilder: (BuildContext context, int index) {
+                final currentZodiac = zodiac.value.entries.elementAt(index);
 
-                  return SizedBox(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                        vertical: 50.0,
-                      ),
+                return SizedBox(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(25.0, 25.0, 25.0, 100.0),
+                    child: Card(
+                      color: const Color.fromARGB(255, 63, 76, 110),
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
@@ -116,6 +112,7 @@ class ZodiacDetailPage extends StatelessWidget {
                                 color: Colors.white,
                                 fontSize: 25.0,
                                 letterSpacing: 1.2,
+                                decoration: TextDecoration.underline,
                               ),
                             ),
                             ListTile(
@@ -227,12 +224,12 @@ class ZodiacDetailPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                  );
-                },
-                itemCount: zodiac.value.length,
-                layout: SwiperLayout.DEFAULT,
-                scrollDirection: Axis.vertical,
-              ),
+                  ),
+                );
+              },
+              itemCount: zodiac.value.length,
+              layout: SwiperLayout.DEFAULT,
+              scrollDirection: Axis.vertical,
             ),
           ),
         ),
