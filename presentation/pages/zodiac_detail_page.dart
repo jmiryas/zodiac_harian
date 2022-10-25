@@ -104,7 +104,7 @@ class ZodiacDetailPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20.0,
-                        vertical: 40.0,
+                        vertical: 50.0,
                       ),
                       child: SingleChildScrollView(
                         child: Column(
@@ -230,8 +230,6 @@ class ZodiacDetailPage extends StatelessWidget {
                   );
                 },
                 itemCount: zodiac.value.length,
-                itemWidth: 100.0,
-                itemHeight: 100.0,
                 layout: SwiperLayout.DEFAULT,
                 scrollDirection: Axis.vertical,
               ),
