@@ -33,17 +33,8 @@ const zodiacDayString = [
 
 const zodiacColorList = [
   0xFFf19066,
-  0xFFf5cd79,
-  0xFF546de5,
-  0xFFe15f41,
+  0xFFccae62,
   0xFFc44569,
-  0xFF786fa6,
-  0xFFf8a5c2,
-  0xFF63cdda,
-  0xFFea8685,
-  0xFF596275,
-  0xFF574b90,
-  0xFFf78fb3,
 ];
 
 const zodiacIconList = [
@@ -75,3 +66,6 @@ const zodiacImageList = [
   "11_aquarius_image.png",
   "12_pisces_image.png",
 ];
+
+const primaryColor = 0xFF227093;
+const secondaryColor = 0xFF576574;
